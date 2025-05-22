@@ -1,15 +1,18 @@
 version: '3.8'
-
 services:
   web:
-    build: ./apps/web
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     depends_on:
       - cms
 
   cms:
-    build: ./apps/cms
+    build:
+      context: ./apps/cms
+      dockerfile: Dockerfile
     ports:
       - "1337:1337"
     environment:
@@ -22,6 +25,8 @@ services:
       JWT_SECRET: your_jwt_secret_here
     depends_on:
       - postgres
+    volumes:
+      - ./apps/cms/public/uploads:/srv/app/public/uploads
 
   postgres:
     image: postgres:15
