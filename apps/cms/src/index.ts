@@ -1,20 +1,22 @@
-// import type { Core } from '@strapi/strapi';
-
+// apps/cms/src/index.ts
 export default {
   /**
-   * An asynchronous register function that runs before
-   * your application is initialized.
-   *
-   * This gives you an opportunity to extend code.
+   * Register phase: run before your application is initialized.
    */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+  register() { },
 
   /**
-   * An asynchronous bootstrap function that runs before
-   * your application gets started.
-   *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
+   * Bootstrap phase: run before your application starts.
+   * Here we mount our /health endpoint on Strapi's internal Koa router.
    */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+  bootstrap({ strapi }) {
+    strapi.server.router.get('/health', async (ctx, next) => {
+      ctx.body = {
+        status: 'OK',
+        uptime: process.uptime(),
+        timestamp: Date.now(),
+      };
+      await next();
+    });
+  },
 };
