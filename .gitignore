@@ -1,41 +1,64 @@
 # === Operating System Files ===
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # === Editor / IDE ===
 .vscode/
 *.code-workspace
+.idea/
+.fleet/
+.history/
+*.swp
+*~
 
 # === Node ===
 **/node_modules/
 node_modules/
+.pnpm-store/
 
 # === Next.js ===
 .next/
 out/
+.vercel/
+.netlify/
 
 # === Build Outputs ===
 dist/
 build/
+.turbo/
 
 # === Environment Variables ===
 .env*
 !.env.example
+apps/cms/.env.local
+.env.docker
 
 # === Logs ===
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
+.eslintcache
+.stylelintcache
 
 # === Docker ===
 docker-compose.override.yml
 docker-compose.*.yml
-.env.docker
 
 # === Strapi Specific ===
 apps/cms/.tmp/
 apps/cms/build/
+apps/cms/.cache/
+apps/cms/.strapi/
 apps/cms/public/uploads/
+*.sqlite
+*.db
+
+# === Test / Coverage ===
+coverage/
+.nyc_output/
+cypress/screenshots/
+cypress/videos/
 
 # === Miscellaneous ===
 testfile.txt
